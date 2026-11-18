@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-green: #104f37;
+  --color-brand-green-dark: #0a3525;
+  --color-brand-green-light: #18714f;
+  --color-brand-green-deep: #051c14;
+  --color-brand-lime: #b5e245;
+  --color-brand-lime-light: #cbf263;
+  --color-brand-lime-dark: #96be2e;
+  --color-brand-pink: #e29cc3;
+  --color-brand-pink-light: #f0bee1;
+  --color-brand-pink-dark: #cb7ba9;
+  
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Premium scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(16, 79, 55, 0.15);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 79, 55, 0.3);
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(181, 226, 69, 0.1);
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(181, 226, 69, 0.2);
+  }
+}
+
+/* ─── Background patterns ─── */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(128, 128, 128, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(128, 128, 128, 0.04) 1px, transparent 1px);
+}
+
+.bg-grid-pattern-dark {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(181, 226, 69, 0.02) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(181, 226, 69, 0.02) 1px, transparent 1px);
+}
+
+/* ─── Glow effects ─── */
+.glow-lime {
+  box-shadow: 0 0 25px rgba(181, 226, 69, 0.15);
+}
+.glow-pink {
+  box-shadow: 0 0 25px rgba(226, 156, 195, 0.15);
+}
+.glow-lime-sm {
+  box-shadow: 0 0 10px rgba(181, 226, 69, 0.25);
+}
+.glow-pink-sm {
+  box-shadow: 0 0 10px rgba(226, 156, 195, 0.25);
+}
+
+/* ─── Glassmorphism ─── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.glass-panel-dark {
+  background: rgba(10, 53, 37, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(181, 226, 69, 0.1);
+}
+
+/* ─── Animations ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* ─── Utilities ─── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Custom rule to make all gray text white in dark mode, excluding white or theme-based text colors */
+.dark [class*="text-gray-"]:not([class*="text-brand-"]):not([class~="text-white"]):not([class~="dark:text-white"]):not([class*="text-[#"]):not([class*="text-lime"]):not([class*="text-pink"]):not([class*="text-green"]) {
+  color: #ffffff !important;
+}
+
+/* Reduce spacing gaps between sections globally */
+section[class*="py-16"] { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+section[class*="py-20"] { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+section[class*="py-24"] { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+section[class*="py-28"] { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+section[class*="py-32"] { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+section[class*="py-40"] { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; }
+
+section[class*="pb-20"] { padding-bottom: 2.5rem !important; }
+section[class*="pb-28"] { padding-bottom: 3.5rem !important; }
+section[class*="pb-32"] { padding-bottom: 4rem !important; }
+section[class*="pb-40"] { padding-bottom: 4.5rem !important; }
+
+section[class*="pt-20"] { padding-top: 2.5rem !important; }
+section[class*="pt-24"] { padding-top: 3rem !important; }
+section[class*="pt-28"] { padding-top: 3.5rem !important; }
+
+/* Improve gray text contrast/readability in light mode */
+:root:not(.dark) [class*="text-gray-300"]:not([class*="text-brand-"]):not([class~="text-white"]):not([class*="text-[#"]) { color: #6b7280 !important; }
+:root:not(.dark) [class*="text-gray-400"]:not([class*="text-brand-"]):not([class~="text-white"]):not([class*="text-[#"]) { color: #4b5563 !important; }
+:root:not(.dark) [class*="text-gray-500"]:not([class*="text-brand-"]):not([class~="text-white"]):not([class*="text-[#"]) { color: #374151 !important; }
+:root:not(.dark) [class*="text-gray-600"]:not([class*="text-brand-"]):not([class~="text-white"]):not([class*="text-[#"]) { color: #1f2937 !important; }
